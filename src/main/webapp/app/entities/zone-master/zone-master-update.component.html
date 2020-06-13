@@ -1,0 +1,62 @@
+<div class="card">
+    <div class="body">
+        <h5 id="jhi-zone-master-heading">Zone Master</h5>
+        <hr/>
+        <div class="row">
+            <div class="col-8">
+                <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+                    <div>
+                        <div class="row card-margin-bottom-10" [hidden]="!editForm.get('id')!.value">
+                            <div class="col-md-3">
+                                <label for="id">ID</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control form-control-sm" id="id" name="id" formControlName="id" readonly />
+                            </div>
+                        </div>
+                        <div class="row card-margin-bottom-10">
+                            <div class="col-md-3">
+                                <label class="form-control-label" for="field_zoneCode">Zone Code</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control form-control-sm" name="zoneCode" id="field_zoneCode" formControlName="zoneCode"/>
+                                <div *ngIf="editForm.get('zoneCode')!.invalid && (editForm.get('zoneCode')!.dirty || editForm.get('zoneCode')!.touched)">
+                                    <small class="form-text text-danger" *ngIf="editForm.get('zoneCode')?.errors?.required">
+                                         This field is required.
+                                    </small>
+                                    <small class="form-text text-danger"  *ngIf="editForm.get('zoneCode')?.errors?.maxlength">
+                                          This field cannot be longer than 10 characters.
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row card-margin-bottom-10">
+                            <div class="col-md-3">
+                                <label class="form-control-label" for="field_zoneName">Zone Name</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control form-control-sm" name="zoneName" id="field_zoneName" formControlName="zoneName"/>
+                                <div *ngIf="editForm.get('zoneName')!.invalid && (editForm.get('zoneName')!.dirty || editForm.get('zoneName')!.touched)">
+                                    <small class="form-text text-danger"  *ngIf="editForm.get('zoneName')?.errors?.required">
+                                        This field is required.
+                                    </small>
+                                    <small class="form-text text-danger"  *ngIf="editForm.get('zoneName')?.errors?.maxlength">
+                                         This field cannot be longer than 100 characters.
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="button" id="cancel-save" class="btn btn-sm btn-secondary btn-round" (click)="previousState()">
+                            <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                        </button>
+                        <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-sm btn-blush btn-round">
+                            <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

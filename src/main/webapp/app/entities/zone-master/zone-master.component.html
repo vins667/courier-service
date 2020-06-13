@@ -1,0 +1,80 @@
+<div class="card">
+    <div class="body">
+        <div>
+            <h5 id="page-heading"><span>Zone Master</span></h5>
+            <div class="row">
+                <div class="col-md-2">
+                    <input type="text" class="form-control form-control-sm text-uppercase" placeholder="Zone Code" [(ngModel)]="zoneMasterSearch.zoneCode"/>
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control form-control-sm text-uppercase" placeholder="Zone Code" [(ngModel)]="zoneMasterSearch.zoneName"/>
+                </div>
+                <div class="col-md-7 text-right">
+                    <button id="jh-search-entity" class="btn btn-sm btn-info btn-round" type="button" style="margin: 0;" (click)="search()">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                        <span >Search</span>
+                    </button>
+                    <button id="jh-create-entity" class="btn btn-sm btn-blush btn-round jh-create-entity create-zone-master" [routerLink]="['/zone-master/new']">
+                        <fa-icon icon="plus"></fa-icon>
+                        <span>new</span>
+                    </button>
+                </div>
+            </div>
+            <jhi-alert-error></jhi-alert-error>
+            <jhi-alert></jhi-alert>
+            <div class="alert alert-warning" id="no-result" *ngIf="zoneMasters?.length === 0" style="margin-top:15px">
+                <span>No Zone Master found</span>
+            </div>
+            <div class="table-responsive" id="entities">
+                <table class="table table-striped" aria-describedby="page-heading">
+                    <thead>
+                        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                            <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+                            <th scope="col"  jhiSortBy="zoneCode"><span>Zone Code</span> <fa-icon icon="sort"></fa-icon></th>
+                            <th scope="col"  jhiSortBy="zoneName"><span>Zone Name</span> <fa-icon icon="sort"></fa-icon></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let zoneMaster of zoneMasters ;trackBy: trackId">
+                            <td><a [routerLink]="['/zone-master', zoneMaster.id, 'view']">{{ zoneMaster.id }}</a></td>
+                            <td>{{ zoneMaster.zoneCode }}</td>
+                            <td>{{ zoneMaster.zoneName }}</td>
+                            <td class="text-right button-column">
+                                <div class="btn-group">
+                                    <button type="submit"
+                                            [routerLink]="['/zone-master', zoneMaster.id, 'view']"
+                                            class="btn btn-info btn-sm">
+                                        <fa-icon icon="eye"></fa-icon>
+                                        <span class="d-none d-md-inline">View</span>
+                                    </button>
+        
+                                    <button type="submit"
+                                            [routerLink]="['/zone-master', zoneMaster.id, 'edit']"
+                                            class="btn btn-blush btn-sm">
+                                        <fa-icon icon="pencil-alt"></fa-icon>
+                                        <span class="d-none d-md-inline">Edit</span>
+                                    </button>
+        
+                                    <button type="submit" (click)="delete(zoneMaster)"
+                                        class="btn btn-danger btn-sm">
+                                        <fa-icon icon="times"></fa-icon>
+                                        <span class="d-none d-md-inline">Delete</span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="zoneMasters && zoneMasters.length > 0">
+                <div class="row justify-content-center">
+                    <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+                </div>
+                <div class="row justify-content-center">
+                    <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

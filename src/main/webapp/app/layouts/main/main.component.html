@@ -1,0 +1,29 @@
+<!-- <jhi-page-ribbon></jhi-page-ribbon>
+<div>
+    <router-outlet name="navbar"></router-outlet>
+</div>
+<div class="container-fluid">
+    <div class="card jh-card">
+        <router-outlet></router-outlet>
+    </div>
+    <jhi-footer></jhi-footer>
+</div> -->
+
+<jhi-page-ribbon></jhi-page-ribbon>
+<div class="theme-blush" [class.ls-toggle-menu]="commonService.sidebarMiniToggleValue" [class.ls-closed]="!commonService.sidebarToggleValue">
+    <div class="overlay"></div>
+   <router-outlet name="navbar"></router-outlet>
+</div>
+<div class="theme-blush container-fluid authentication" [class.ls-toggle-menu]="commonService.sidebarMiniToggleValue" style="padding-right: 0px; padding-left: 0px; background-color: #FC9E4F;">
+    <section class="content home" [class.content]="isAuthenticated()">
+        <router-outlet></router-outlet>
+        <router-outlet name="popup"></router-outlet>
+        <jhi-footer></jhi-footer>
+    </section>
+</div>
+<!-- <ng-snotify></ng-snotify> -->
+
+<!--jhi-page-ribbon></jhi-page-ribbon-->
+
+
+

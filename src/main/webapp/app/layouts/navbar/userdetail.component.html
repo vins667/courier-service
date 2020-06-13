@@ -1,0 +1,30 @@
+<ng-container *ngIf="account">
+    <div class="user-info m-b-20 p-b-15">
+        <div class="image"><a routerLink="/dashboard"><img src="D:/file_upload/workerrecruitemt/3.jpeg" onerror="this.src='content/images/default_male.png'" alt="User" style="width: 80px;height: 80px"></a></div>
+        <div class="detail">
+            <h4 style="font-weight: bold;">{{account.login}}</h4>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-12"><small><strong>Personal Info</strong></small></div>
+        </div>
+        <div class="row">
+            <div class="col-3 text-left"><small><strong>Name:&nbsp;</strong></small></div>
+            <div class="col-9 text-left"><small>{{account.login}} {{account.lastName}}</small></div>
+        </div>
+        <div class="row text-left">
+            <div class="col-3 text-left"><small><strong>Email:&nbsp;</strong></small></div>
+            <div class="col-9 text-left"><small> {{ (account.email.length>20)? (account.email | slice:0:20)+'..':(account.email) }}</small></div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <button type="button" [routerLink]="'profile-upload'" class="btn btn-round btn-sm btn-warning">Load Photo</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <button type="button" [routerLink]="'password'" class="btn btn-round btn-sm btn-blush">Change Password</button>
+            </div>
+        </div>
+    </div>
+</ng-container>

@@ -1,0 +1,52 @@
+<div *ngIf="isAuthenticated()">
+    <!-- Top Bar -->
+    <nav class="navbar p-l-5 p-r-5">
+        <ul class="nav navbar-nav navbar-left">
+            <li>
+                <div class="navbar-header">
+                    <a href="javascript:void(0);" class="ls-toggle-btn" data-close="true" (click)="commonService.sidebarMiniToggle()"><i class="zmdi zmdi-swap" style="font-size: 25px;"></i></a>
+                    <a href="javascript:void(0);" class="bars">
+                        <span *ngFor="let number of [0,1,2]"></span>
+                    </a>
+                    <a class="navbar-brand" href="#/dashboard"><span class="m-l-10 saving">COURIER</span></a>
+                </div>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="float-right text-right">
+                <a class="navbar-brand" href="javascript:void(0);"><span class="m-l-10 saving"><span style="text-transform: lowercase;">c</span>Portal</span></a>
+                <a href="javascript:void(0);" (click)="logout()" class="mega-menu" data-close="true"><i class="zmdi zmdi-power"></i></a>
+                <!--a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="zmdi zmdi-settings zmdi-hc-spin"></i></a-->
+            </li>
+        </ul>
+    </nav>
+</div>
+<div *ngIf="isAuthenticated()">
+    <!-- Left Sidebar -->
+    <!-- <div ngSwitch=""> -->
+        <!-- <div *ngSwitchDefault> -->
+            <aside id="leftsidebar" class="sidebar">
+                <ul class="nav nav-tabs" style="background-color: #FC9E4F;">
+                    <li class="nav-item"><a class="nav-link nav-link-padding" [class.active]="sidebarActive=='menu'" data-toggle="tab" href="javascript:void(0);" (click)="changeSidebar('menu')" style="font-weight: 700 !important;"><i class="zmdi zmdi-home m-r-5"></i>Menu</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-padding" [class.active]="sidebarActive=='user'" data-toggle="tab" href="javascript:void(0);" (click)="changeSidebar('user')" style="font-weight: 700 !important;"><i class="zmdi zmdi-account m-r-5"></i>User</a></li>
+                </ul>
+                <div class="tab-content" style="height: calc(100% - 50px); overflow: hidden; overflow-y: auto; background-color: #F2F3AE;">
+                    <div class="tab-pane stretchRight" [class.active]="sidebarActive=='menu'">
+                        <div class="menu">
+                             <jhi-menu-details></jhi-menu-details>
+                        </div>
+                    </div>
+                    <div class="tab-pane stretchLeft" [class.active]="sidebarActive=='user'">
+                        <div class="menu">
+                            <ul class="list">
+                                <li>
+                                  <jhi-user-name-details></jhi-user-name-details>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        <!-- </div> -->
+    <!-- </div> -->
+</div>
