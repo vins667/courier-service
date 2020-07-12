@@ -1,0 +1,68 @@
+{
+  "fluentMethods": true,
+  "clientRootFolder": "",
+  "relationships": [
+    {
+      "relationshipName": "networkMaster",
+      "otherEntityName": "networkMaster",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": ["required"],
+      "otherEntityField": "networkName",
+      "otherEntityRelationshipName": "standardTariff"
+    },
+    {
+      "relationshipName": "serviceMaster",
+      "otherEntityName": "serviceMaster",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": ["required"],
+      "otherEntityField": "serviceName",
+      "otherEntityRelationshipName": "standardTariff"
+    },
+    {
+      "relationshipName": "cityMaster",
+      "otherEntityName": "cityMaster",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": ["required"],
+      "otherEntityField": "cityName",
+      "otherEntityRelationshipName": "standardTariff"
+    },
+    {
+      "relationshipName": "locationWise",
+      "otherEntityName": "cityMaster",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "cityName",
+      "otherEntityRelationshipName": "standardTariff"
+    }
+  ],
+  "fields": [
+    {
+      "fieldName": "fromWeight",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "toWeight",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dox",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "nDox",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "changelogDate": "20200712033926",
+  "dto": "mapstruct",
+  "searchEngine": "elasticsearch",
+  "service": "serviceImpl",
+  "entityTableName": "standard_tariff",
+  "databaseType": "sql",
+  "readOnly": false,
+  "jpaMetamodelFiltering": true,
+  "pagination": "pagination"
+}

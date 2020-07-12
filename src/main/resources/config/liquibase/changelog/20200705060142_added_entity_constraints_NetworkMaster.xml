@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity NetworkMaster.
+    -->
+    <changeSet id="20200705060142-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="city_master_id"
+                                 baseTableName="network_master"
+                                 constraintName="fk_network_master_city_master_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="city_master"/>
+
+    </changeSet>
+</databaseChangeLog>

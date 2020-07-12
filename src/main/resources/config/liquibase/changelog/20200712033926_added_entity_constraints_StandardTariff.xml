@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity StandardTariff.
+    -->
+    <changeSet id="20200712033926-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="network_master_id"
+                                 baseTableName="standard_tariff"
+                                 constraintName="fk_standard_tariff_network_master_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="network_master"/>
+
+        <addForeignKeyConstraint baseColumnNames="service_master_id"
+                                 baseTableName="standard_tariff"
+                                 constraintName="fk_standard_tariff_service_master_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="service_master"/>
+
+        <addForeignKeyConstraint baseColumnNames="city_master_id"
+                                 baseTableName="standard_tariff"
+                                 constraintName="fk_standard_tariff_city_master_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="city_master"/>
+
+     
+
+    </changeSet>
+</databaseChangeLog>

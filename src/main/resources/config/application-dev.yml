@@ -61,6 +61,7 @@ spring:
       enabled: false
   jpa:
     show-sql: true
+    #hibernate.ddl-auto: update
   data:
     elasticsearch:
       properties:

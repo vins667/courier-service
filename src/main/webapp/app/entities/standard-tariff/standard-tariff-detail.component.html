@@ -1,0 +1,66 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="standardTariff">
+            <h2><span>Standard Tariff</span> {{ standardTariff.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>From Weight</span></dt>
+                <dd>
+                    <span>{{ standardTariff.fromWeight }}</span>
+                </dd>
+                <dt><span>To Weight</span></dt>
+                <dd>
+                    <span>{{ standardTariff.toWeight }}</span>
+                </dd>
+                <dt><span>Dox</span></dt>
+                <dd>
+                    <span>{{ standardTariff.dox }}</span>
+                </dd>
+                <dt><span>N Dox</span></dt>
+                <dd>
+                    <span>{{ standardTariff.nDox }}</span>
+                </dd>
+                <dt><span>Network Master</span></dt>
+                <dd>
+                    <div *ngIf="standardTariff.networkMasterId">
+                        <a [routerLink]="['/network-master', standardTariff.networkMasterId, 'view']">{{ standardTariff.networkMasterNetworkName }}</a>
+                    </div>
+                </dd>
+                <dt><span>Service Master</span></dt>
+                <dd>
+                    <div *ngIf="standardTariff.serviceMasterId">
+                        <a [routerLink]="['/service-master', standardTariff.serviceMasterId, 'view']">{{ standardTariff.serviceMasterServiceName }}</a>
+                    </div>
+                </dd>
+                <dt><span>City Master</span></dt>
+                <dd>
+                    <div *ngIf="standardTariff.cityMasterId">
+                        <a [routerLink]="['/city-master', standardTariff.cityMasterId, 'view']">{{ standardTariff.cityMasterCityName }}</a>
+                    </div>
+                </dd>
+                <dt><span>Location Wise</span></dt>
+                <dd>
+                    <div *ngIf="standardTariff.locationWiseId">
+                        <a [routerLink]="['/city-master', standardTariff.locationWiseId, 'view']">{{ standardTariff.locationWiseCityName }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/standard-tariff', standardTariff.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

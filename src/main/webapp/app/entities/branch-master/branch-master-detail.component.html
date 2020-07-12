@@ -1,0 +1,62 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="branchMaster">
+            <h2><span>Branch Master</span> {{ branchMaster.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Branch Name</span></dt>
+                <dd>
+                    <span>{{ branchMaster.branchName }}</span>
+                </dd>
+                <dt><span>Manager Name</span></dt>
+                <dd>
+                    <span>{{ branchMaster.managerName }}</span>
+                </dd>
+                <dt><span>Pin Code</span></dt>
+                <dd>
+                    <span>{{ branchMaster.pinCode }}</span>
+                </dd>
+                <dt><span>Address</span></dt>
+                <dd>
+                    <span>{{ branchMaster.address }}</span>
+                </dd>
+                <dt><span>Email</span></dt>
+                <dd>
+                    <span>{{ branchMaster.email }}</span>
+                </dd>
+                <dt><span>Mobile</span></dt>
+                <dd>
+                    <span>{{ branchMaster.mobile }}</span>
+                </dd>
+                <dt><span>Company Master</span></dt>
+                <dd>
+                    <div *ngIf="branchMaster.companyMasterId">
+                        <a [routerLink]="['/company-master', branchMaster.companyMasterId, 'view']">{{ branchMaster.companyMasterCompanyName }}</a>
+                    </div>
+                </dd>
+                <dt><span>Country Master</span></dt>
+                <dd>
+                    <div *ngIf="branchMaster.countryMasterId">
+                        <a [routerLink]="['/country-master', branchMaster.countryMasterId, 'view']">{{ branchMaster.countryMasterCountryName }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/branch-master', branchMaster.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

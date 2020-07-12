@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity CompanyMaster.
+    -->
+    <changeSet id="20200621071750-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="state_master_id"
+                                 baseTableName="company_master"
+                                 constraintName="fk_company_master_state_master_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="state_master"/>
+
+        <addForeignKeyConstraint baseColumnNames="country_master_id"
+                                 baseTableName="company_master"
+                                 constraintName="fk_company_master_country_master_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="country_master"/>
+
+        <addForeignKeyConstraint baseColumnNames="city_master_id"
+                                 baseTableName="company_master"
+                                 constraintName="fk_company_master_city_master_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="city_master"/>
+
+    </changeSet>
+</databaseChangeLog>

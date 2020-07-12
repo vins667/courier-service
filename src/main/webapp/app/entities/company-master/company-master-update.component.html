@@ -1,0 +1,254 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-company-master-heading">Create or edit a Company Master</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_companyName">Company Name</label>
+                    <input type="text" class="form-control" name="companyName" id="field_companyName"
+                           formControlName="companyName"/>
+                    <div *ngIf="editForm.get('companyName')!.invalid && (editForm.get('companyName')!.dirty || editForm.get('companyName')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('companyName')?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('companyName')?.errors?.minlength">
+                        This field is required to be at least 2 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('companyName')?.errors?.maxlength">
+                        This field cannot be longer than 50 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_address">Address</label>
+                    <input type="text" class="form-control" name="address" id="field_address"
+                           formControlName="address"/>
+                    <div *ngIf="editForm.get('address')!.invalid && (editForm.get('address')!.dirty || editForm.get('address')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('address')?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('address')?.errors?.minlength">
+                        This field is required to be at least 2 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('address')?.errors?.maxlength">
+                        This field cannot be longer than 30 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_countryMaster">Country Master</label>
+                    <select class="form-control" id="field_countryMaster" name="countryMaster" formControlName="countryMasterId">
+                        <option *ngIf="!editForm.get('countryMasterId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="countryMasterOption.id" *ngFor="let countryMasterOption of countrymasters; trackBy: trackById">{{ countryMasterOption.countryName }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('countryMasterId')!.invalid && (editForm.get('countryMasterId')!.dirty || editForm.get('countryMasterId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('countryMasterId')?.errors?.required">
+                        This field is required.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_stateMaster">State Master</label>
+                    <select class="form-control" id="field_stateMaster" name="stateMaster" formControlName="stateMasterId">
+                        <option *ngIf="!editForm.get('stateMasterId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="stateMasterOption.id" *ngFor="let stateMasterOption of statemasters; trackBy: trackById">{{ stateMasterOption.stateName }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('stateMasterId')!.invalid && (editForm.get('stateMasterId')!.dirty || editForm.get('stateMasterId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('stateMasterId')?.errors?.required">
+                        This field is required.
+                    </small>
+                </div>
+
+               
+                <div class="form-group">
+                    <label class="form-control-label" for="field_cityMaster">City Master</label>
+                    <select class="form-control" id="field_cityMaster" name="cityMaster" formControlName="cityMasterId">
+                        <option *ngIf="!editForm.get('cityMasterId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="cityMasterOption.id" *ngFor="let cityMasterOption of citymasters; trackBy: trackById">{{ cityMasterOption.cityName }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('cityMasterId')!.invalid && (editForm.get('cityMasterId')!.dirty || editForm.get('cityMasterId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('cityMasterId')?.errors?.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+               
+                
+
+               
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_pinCode">Pin Code</label>
+                    <input type="text" class="form-control" name="pinCode" id="field_pinCode"
+                           formControlName="pinCode"/>
+                    <div *ngIf="editForm.get('pinCode')!.invalid && (editForm.get('pinCode')!.dirty || editForm.get('pinCode')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('pinCode')?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('pinCode')?.errors?.minlength">
+                        This field is required to be at least 6 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('pinCode')?.errors?.maxlength">
+                        This field cannot be longer than 9 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_mdName">Md Name</label>
+                    <input type="text" class="form-control" name="mdName" id="field_mdName"
+                           formControlName="mdName"/>
+                    <div *ngIf="editForm.get('mdName')!.invalid && (editForm.get('mdName')!.dirty || editForm.get('mdName')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('mdName')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_mdContactNo">Md Contact No</label>
+                    <input type="text" class="form-control" name="mdContactNo" id="field_mdContactNo"
+                           formControlName="mdContactNo"/>
+                    <div *ngIf="editForm.get('mdContactNo')!.invalid && (editForm.get('mdContactNo')!.dirty || editForm.get('mdContactNo')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('mdContactNo')?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                        *ngIf="editForm.get('mdContactNo')?.errors?.minlength">
+                 This field is required to be at least 10 characters.
+                 </small>
+                 <small class="form-text text-danger"
+                        *ngIf="editForm.get('mdContactNo')?.errors?.maxlength">
+                 This field cannot be longer than 10 characters.
+                 </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_mdEmailId">Md Email Id</label>
+                    <input type="text" class="form-control" name="mdEmailId" id="field_mdEmailId"
+                           formControlName="mdEmailId"/>
+                    <div *ngIf="editForm.get('mdEmailId')!.invalid && (editForm.get('mdEmailId')!.dirty || editForm.get('mdEmailId')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('mdEmailId')?.errors?.pattern">
+                            This field should follow pattern for "Email Id".
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_panNumber">Pan Number</label>
+                    <input type="text" class="form-control" name="panNumber" id="field_panNumber"
+                           formControlName="panNumber"/>
+                    <div *ngIf="editForm.get('panNumber')!.invalid && (editForm.get('panNumber')!.dirty || editForm.get('panNumber')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('panNumber')?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('panNumber')?.errors?.minlength">
+                        This field is required to be at least 10 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('panNumber')?.errors?.maxlength">
+                        This field cannot be longer than 10 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('panNumber')?.errors?.pattern">
+                            This field should follow pattern for "Pan Number".
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_webSiteUrl">Web Site Url</label>
+                    <input type="text" class="form-control" name="webSiteUrl" id="field_webSiteUrl"
+                           formControlName="webSiteUrl"/>
+                    <div *ngIf="editForm.get('webSiteUrl')!.invalid && (editForm.get('webSiteUrl')!.dirty || editForm.get('webSiteUrl')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('webSiteUrl')?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('webSiteUrl')?.errors?.pattern">
+                            This field should follow pattern for "Web Site Url".
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_tinNumber">Tin Number</label>
+                    <input type="text" class="form-control" name="tinNumber" id="field_tinNumber"
+                           formControlName="tinNumber"/>
+                    <div *ngIf="editForm.get('tinNumber')!.invalid && (editForm.get('tinNumber')!.dirty || editForm.get('tinNumber')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('tinNumber')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_gstNumber">Gst Number</label>
+                    <input type="text" class="form-control" name="gstNumber" id="field_gstNumber"
+                           formControlName="gstNumber"/>
+                    <div *ngIf="editForm.get('gstNumber')!.invalid && (editForm.get('gstNumber')!.dirty || editForm.get('gstNumber')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('gstNumber')?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('gstNumber')?.errors?.minlength">
+                        This field is required to be at least 15 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('gstNumber')?.errors?.maxlength">
+                        This field cannot be longer than 15 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('gstNumber')?.errors?.pattern">
+                            This field should follow pattern for "Gst Number".
+                        </small>
+                    </div>
+                </div>
+
+                
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

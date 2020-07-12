@@ -15,6 +15,15 @@
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
 	<include file="config/liquibase/changelog/20200607075209_added_entity_ZoneMaster.xml" relativeToChangelogFile="false"/>
+	<include file="config/liquibase/changelog/20200614035711_added_entity_CountryMaster.xml" relativeToChangelogFile="false"/>
+	<include file="config/liquibase/changelog/20200614051121_added_entity_StateMaster.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200614060154_added_entity_CityMaster.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200621071750_added_entity_CompanyMaster.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200705033759_added_entity_BranchMaster.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200705051458_added_entity_ServiceMaster.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200705060142_added_entity_NetworkMaster.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200712033926_added_entity_StandardTariff.xml" relativeToChangelogFile="false"/>
+    
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->

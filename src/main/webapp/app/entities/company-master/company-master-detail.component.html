@@ -1,0 +1,96 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="companyMaster">
+            <h2><span>Company Master</span> {{ companyMaster.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Company Name</span></dt>
+                <dd>
+                    <span>{{ companyMaster.companyName }}</span>
+                </dd>
+                <dt><span>Address</span></dt>
+                <dd>
+                    <span>{{ companyMaster.address }}</span>
+                </dd>
+                <dt><span>Country</span></dt>
+                <dd>
+                    <span>{{ companyMaster.countryMasterCountryName }}</span>
+                </dd>
+                <dt><span>State</span></dt>
+                <dd>
+                    <span>{{ companyMaster.stateMasterStateName }}</span>
+                </dd>
+                <dt><span>City</span></dt>
+                <dd>
+                    <span>{{ companyMaster.cityMasterCityName }}</span>
+                </dd>
+                <dt><span>Pin Code</span></dt>
+                <dd>
+                    <span>{{ companyMaster.pinCode }}</span>
+                </dd>
+                <dt><span>Md Name</span></dt>
+                <dd>
+                    <span>{{ companyMaster.mdName }}</span>
+                </dd>
+                <dt><span>Md Contact No</span></dt>
+                <dd>
+                    <span>{{ companyMaster.mdContactNo }}</span>
+                </dd>
+                <dt><span>Md Email Id</span></dt>
+                <dd>
+                    <span>{{ companyMaster.mdEmailId }}</span>
+                </dd>
+                <dt><span>Pan Number</span></dt>
+                <dd>
+                    <span>{{ companyMaster.panNumber }}</span>
+                </dd>
+                <dt><span>Web Site Url</span></dt>
+                <dd>
+                    <span>{{ companyMaster.webSiteUrl }}</span>
+                </dd>
+                <dt><span>Tin Number</span></dt>
+                <dd>
+                    <span>{{ companyMaster.tinNumber }}</span>
+                </dd>
+                <dt><span>Gst Number</span></dt>
+                <dd>
+                    <span>{{ companyMaster.gstNumber }}</span>
+                </dd>
+                <dt><span>State Master</span></dt>
+                <dd>
+                    <div *ngIf="companyMaster.stateMasterId">
+                        <a [routerLink]="['/state-master', companyMaster.stateMasterId, 'view']">{{ companyMaster.stateMasterStateName }}</a>
+                    </div>
+                </dd>
+                <dt><span>Country Master</span></dt>
+                <dd>
+                    <div *ngIf="companyMaster.countryMasterId">
+                        <a [routerLink]="['/country-master', companyMaster.countryMasterId, 'view']">{{ companyMaster.countryMasterCountryName }}</a>
+                    </div>
+                </dd>
+                <dt><span>City Master</span></dt>
+                <dd>
+                    <div *ngIf="companyMaster.cityMasterId">
+                        <a [routerLink]="['/city-master', companyMaster.cityMasterId, 'view']">{{ companyMaster.cityMasterCityName }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/company-master', companyMaster.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

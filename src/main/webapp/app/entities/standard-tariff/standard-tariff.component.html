@@ -1,0 +1,121 @@
+<div class="card">
+    <div class="body">
+    <h2 id="page-heading">
+        <span>Standard Tariffs</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-standard-tariff" [routerLink]="['/standard-tariff/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span class="hidden-sm-down">
+            Create a new Standard Tariff
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="Query">
+
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon icon="search"></fa-icon>
+                    </button>
+
+                    <button class="input-group-append btn btn-danger" (click)="search('')" *ngIf="currentSearch">
+                        <fa-icon icon="trash-alt"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="standardTariffs?.length === 0">
+        <span>No standardTariffs found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="standardTariffs && standardTariffs.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="fromWeight"><span>From Weight</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="toWeight"><span>To Weight</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dox"><span>Dox</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="nDox"><span>N Dox</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="networkMasterNetworkName"><span>Network Master</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="serviceMasterServiceName"><span>Service Master</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="cityMasterCityName"><span>City Master</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="locationWiseCityName"><span>Location Wise</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let standardTariff of standardTariffs ;trackBy: trackId">
+                    <td><a [routerLink]="['/standard-tariff', standardTariff.id, 'view']">{{ standardTariff.id }}</a></td>
+                    <td>{{ standardTariff.fromWeight }}</td>
+                    <td>{{ standardTariff.toWeight }}</td>
+                    <td>{{ standardTariff.dox }}</td>
+                    <td>{{ standardTariff.nDox }}</td>
+                    <td>
+                        <div *ngIf="standardTariff.networkMasterId">
+                            <a [routerLink]="['/network-master', standardTariff.networkMasterId , 'view']" >{{ standardTariff.networkMasterNetworkName }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="standardTariff.serviceMasterId">
+                            <a [routerLink]="['/service-master', standardTariff.serviceMasterId , 'view']" >{{ standardTariff.serviceMasterServiceName }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="standardTariff.cityMasterId">
+                            <a [routerLink]="['/city-master', standardTariff.cityMasterId , 'view']" >{{ standardTariff.cityMasterCityName }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="standardTariff.locationWiseId">
+                            <a [routerLink]="['/city-master', standardTariff.locationWiseId , 'view']" >{{ standardTariff.locationWiseCityName }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/standard-tariff', standardTariff.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/standard-tariff', standardTariff.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(standardTariff)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="standardTariffs && standardTariffs.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>
+</div>

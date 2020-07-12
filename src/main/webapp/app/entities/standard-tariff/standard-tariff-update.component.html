@@ -1,0 +1,140 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-standard-tariff-heading">Create or edit a Standard Tariff</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_networkMaster">Network</label>
+                    <select class="form-control" id="field_networkMaster" name="networkMaster" formControlName="networkMasterId">
+                        <option *ngIf="!editForm.get('networkMasterId')!.value" [ngValue]="null" selected>Select</option>
+                        <option [ngValue]="networkMasterOption.id" *ngFor="let networkMasterOption of networkmasters; trackBy: trackById">{{ networkMasterOption.networkName }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('networkMasterId')!.invalid && (editForm.get('networkMasterId')!.dirty || editForm.get('networkMasterId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('networkMasterId')?.errors?.required">
+                        This field is required.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_serviceMaster">Service</label>
+                    <select class="form-control" id="field_serviceMaster" name="serviceMaster" formControlName="serviceMasterId">
+                        <option *ngIf="!editForm.get('serviceMasterId')!.value" [ngValue]="null" selected>Select</option>
+                        <option [ngValue]="serviceMasterOption.id" *ngFor="let serviceMasterOption of servicemasters; trackBy: trackById">{{ serviceMasterOption.serviceName }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('serviceMasterId')!.invalid && (editForm.get('serviceMasterId')!.dirty || editForm.get('serviceMasterId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('serviceMasterId')?.errors?.required">
+                        This field is required.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_cityMaster">Origin</label>
+                    <select class="form-control" id="field_cityMaster" name="cityMaster" formControlName="cityMasterId">
+                        <option *ngIf="!editForm.get('cityMasterId')!.value" [ngValue]="null" selected>Select</option>
+                        <option [ngValue]="cityMasterOption.id" *ngFor="let cityMasterOption of citymasters; trackBy: trackById">{{ cityMasterOption.cityName }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('cityMasterId')!.invalid && (editForm.get('cityMasterId')!.dirty || editForm.get('cityMasterId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('cityMasterId')?.errors?.required">
+                        This field is required.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_locationWise">Location Wise</label>
+                    <select (change)="onLocationWiseChange(locaitonWiseInput.value)" #locaitonWiseInput class="form-control" id="field_locationWise" name="locationWise" formControlName="locationWise">
+                        <option [ngValue]="null">Select</option>
+                        <option [ngValue]="code.code" *ngFor="let code of locationWise; ">{{ code.desc }}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_location">Location</label>
+                    <select class="form-control" id="field_location" name="locationWise" formControlName="location">
+                        <option [ngValue]="null">Select</option>
+                        <option [ngValue]="code.code" *ngFor="let code of locations; ">{{ code.desc }}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_fromWeight">From Weight</label>
+                    <input type="number" class="form-control" name="fromWeight" id="field_fromWeight"
+                           formControlName="fromWeight"/>
+                    <div *ngIf="editForm.get('fromWeight')!.invalid && (editForm.get('fromWeight')!.dirty || editForm.get('fromWeight')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('fromWeight')?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('fromWeight')?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_toWeight">To Weight</label>
+                    <input type="number" class="form-control" name="toWeight" id="field_toWeight"
+                           formControlName="toWeight"/>
+                    <div *ngIf="editForm.get('toWeight')!.invalid && (editForm.get('toWeight')!.dirty || editForm.get('toWeight')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('toWeight')?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('toWeight')?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_dox">Dox</label>
+                    <input type="text" class="form-control" name="dox" id="field_dox"
+                           formControlName="dox"/>
+                    <div *ngIf="editForm.get('dox')!.invalid && (editForm.get('dox')!.dirty || editForm.get('dox')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('dox')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_nDox">N Dox</label>
+                    <input type="text" class="form-control" name="nDox" id="field_nDox"
+                           formControlName="nDox"/>
+                    <div *ngIf="editForm.get('nDox')!.invalid && (editForm.get('nDox')!.dirty || editForm.get('nDox')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nDox')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+               
+
+                
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
